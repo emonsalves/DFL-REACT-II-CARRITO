@@ -1,9 +1,11 @@
+import Banner from "../components/Banner"
 import Navbar from "../components/Navbar"
 function Header() {
   return (
-    <div>
+    <>
       <Navbar/>
-    </div>
+      <Banner/>
+    </>
   )
 }
 

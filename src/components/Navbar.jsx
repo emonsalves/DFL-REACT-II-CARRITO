@@ -4,15 +4,10 @@ import { NavLink } from "react-router-dom"
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   return (
-    <nav className="flex min-w-full top-0 flex-wrap items-center justify-between px-2 py-3 bg-red-500 z-10">
+    <nav className="flex fixed min-w-full top-0 flex-wrap items-center justify-between px-2  bg-green-500 z-10">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-          <p
-            className="cursor-default text-sm font
-          -bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-          >
-            Tema Actual
-          </p>
+          <img src="/natosPizza.png" alt="Letras Nato Pizza" className="h-20" />
           <button
             className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
@@ -34,7 +29,7 @@ export default function Navbar() {
                 to={"/"}
                 className={({ isActive }) =>
                   isActive
-                    ? "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-gray-500 rounded-lg"
+                    ? "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-500 rounded-lg"
                     : "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 }
                 end
@@ -44,15 +39,14 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink
-                to={"/NewPage"}
+                to={"/ShoppingCart"}
                 className={({ isActive }) =>
                   isActive
-                    ? "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-gray-500 rounded-lg"
+                    ? "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-500 rounded-lg"
                     : "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 }
-                end
               >
-                NewPage
+                Cart
               </NavLink>
             </li>
           </ul>
