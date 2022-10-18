@@ -7,10 +7,10 @@ import Button from "../components/Button"
 
 function Pizza() {
   const { id } = useParams()
-  const { data, setPizzaSelected } = useContext(MyContext)
+  const { data, changeToClp } = useContext(MyContext)
 
   return (
-    <>
+    <div className="containerDetail m-[10%]">
       {id &&
         data
           .filter((pizza) => pizza.id === id)
@@ -22,13 +22,13 @@ function Pizza() {
               <div className="imagePizza">
                 <img src={`${pizzaDetail.img}`} />
               </div>
-              <div className="titlePizza mx-auto">
-                <h1>{pizzaDetail.name}</h1>
+              <div className="titlePizza mx-auto pt-2">
+                <h1>{pizzaDetail.name.toUpperCase()}</h1>
               </div>
-              <div className="descriptionPizza mx-auto">
+              <div className="descriptionPizza ml-[10%]">
                 <p>{pizzaDetail.desc}</p>
               </div>
-              <div className="ingredientsPizza ml-10">
+              <div className="ingredientsPizza ml-[15%]">
                 <ul>
                   Ingredients
                   {pizzaDetail.ingredients
@@ -42,17 +42,19 @@ function Pizza() {
                 </ul>
               </div>
               <div className="totalsPizza flex justify-evenly items-center ">
-                <h1>Valor ${pizzaDetail.price}</h1>
+                <h1>Valor {changeToClp(pizzaDetail.price)}</h1>
                 <Button
                   textBtn={"Add to Cart"}
                   colorBtn={"green"}
-                  setPizzaSelected={setPizzaSelected}
-                  id={id}
+                  id={pizzaDetail.id}
+                  name={pizzaDetail.name.toUpperCase()}
+                  img={pizzaDetail.img}
+                  price={pizzaDetail.price}
                 />
               </div>
             </div>
           ))}
-    </>
+    </div>
   )
 }
 

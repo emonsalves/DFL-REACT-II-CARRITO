@@ -1,19 +1,33 @@
 import React, { useContext } from "react"
 import MyContext from "../context/MyContext"
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-function Button({ colorBtn, textBtn, id }) {
+function Button({ colorBtn, textBtn, id, name, img, price }) {
   const navigate = useNavigate()
-  const { addPizza } = useContext(MyContext)
+  const { addPizza} = useContext(MyContext)
 
   const handlePizza = () => {
     colorBtn === "green"
-      ? (console.log("Agregar a carrito", colorBtn, id), addPizza(id))
-      : (console.log("Ir al detalle pizza", colorBtn, id),
-        navigate(`/Pizza/Detail/${id}`))
+      ? (notifyAdd(), addPizza(id, name, img, price))
+      : navigate(`/Pizza/Detail/${id}`)
   }
+
+  const notifyAdd = () => toast.success(`+1 🍕 ${name} `)
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={200}
+        closeOnClick= {false}
+        hideProgressBar={true}
+        newestOnTop={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        theme="dark"
+      />
       <button
         onClick={handlePizza}
         type="button"

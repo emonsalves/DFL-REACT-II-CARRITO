@@ -1,7 +1,9 @@
-import React from "react"
+import React, {useContext} from "react"
+import MyContext from "../context/MyContext"
 import { NavLink } from "react-router-dom"
 
 export default function Navbar() {
+  const {cartTotal} = useContext(MyContext)
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   return (
     <nav className="flex fixed min-w-full top-0 flex-wrap items-center justify-between px-2  bg-green-500 z-10">
@@ -46,7 +48,7 @@ export default function Navbar() {
                     : "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 }
               >
-                Cart
+               {`🛒 ${cartTotal}`}
               </NavLink>
             </li>
           </ul>
