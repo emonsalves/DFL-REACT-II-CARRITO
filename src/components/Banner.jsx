@@ -1,5 +1,6 @@
 import React from "react"
 
+
 function Banner() {
   return (
     <>
@@ -9,8 +10,9 @@ function Banner() {
 
       <img
         src="/banner.jpg"
+        loading="lazy"
         alt="Banner Pizzeria Natos"
-        className="w-full opacity-40 mt-8 md:mt-8"
+        className="w-full opacity-40"
       />
     </>
   )

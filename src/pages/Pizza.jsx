@@ -1,7 +1,8 @@
 import React, { useContext } from "react"
 import MyContext from "../context/MyContext"
 import { useParams } from "react-router-dom"
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import style from "../assets/css/pagesPizza.css"
 import Button from "../components/Button"
 import NotFound from "./NotFound"
@@ -21,7 +22,7 @@ function Pizza() {
               className="container overflow-hidden flex flex-col"
             >
               <div className="imagePizza sm:max-w-[425px] mx-auto">
-                <img src={`${pizzaDetail.img}`} />
+                <LazyLoadImage src={`${pizzaDetail.img}`} loading="lazy" alt={`Photo of ${pizzaDetail.name}`} effect="black-and-white"/>
               </div>
               <div className="titlePizza mx-auto p-2 font-bold">
                 <h1>{pizzaDetail.name.toUpperCase()}</h1>
