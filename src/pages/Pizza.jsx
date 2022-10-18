@@ -11,7 +11,7 @@ function Pizza() {
   const { data, changeToClp } = useContext(MyContext)
 
   return (
-    <div className="containerDetail my-[90px]  sm:mt-[6%]">
+    <div className="containerDetail my-[90px] sm:mt-[6%] flex justify-center items-center">
       {data.find((item) => item.id === id) ? (
         data
           .filter((pizza) => pizza.id === id)
