@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
+import MyContext from "../../context/MyContext"
 import Button from "../Button"
 
 function Card({ id, img, ingredients, name, price }) {
+  const { changeToClp } = useContext(MyContext)
   return (
     <>
       <div className="card min-w-[330px] max-w-[330px] shadow-lg rounded-[20px] bg-gray-800 flex flex-col overflow-hidden">
@@ -24,17 +26,13 @@ function Card({ id, img, ingredients, name, price }) {
           </ul>
         </div>
         <div>
-          <h1 className="flex justify-center">{`Valor $ ${price.toLocaleString(
-            "es-CL",
-            {
-              style: "currency",
-              currency: "CLP",
-            }
+          <h1 className="flex justify-center">{`Valor ${changeToClp(
+            price
           )}`}</h1>
         </div>
         <div className="cardActions flex justify-evenly my-4">
-          <Button textBtn={"View More"} colorBtn={"red"} id={id} />
-          <Button textBtn={"Add to Cart"} colorBtn={"green"} id={id} />
+          <Button textBtn={"View More"} colorBtn={"red"} name={name} id={id}  />
+          <Button textBtn={"Add to Cart"} colorBtn={"green"} name={name} id={id} img={img} price={price}/>
         </div>
       </div>
     </>
