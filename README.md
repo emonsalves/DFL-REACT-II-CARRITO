@@ -15,6 +15,7 @@ Config :<br>
 📌 React Router Dom <br>
 📌 Context <br>
 📌 Lazy Load <br>
+📌 Toasty Notify <br>
 📌 ...<br>
 
 <br/>
