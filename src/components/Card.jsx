@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
 import MyContext from "../context/MyContext"
 import Button from "./Button"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 
 function Card({ id, img, ingredients, name, price }) {
   const { changeToClp } = useContext(MyContext)
@@ -8,7 +10,7 @@ function Card({ id, img, ingredients, name, price }) {
     <>
       <div className="card min-w-[330px] max-w-[330px] shadow-lg rounded-[20px] bg-gray-800 flex flex-col overflow-hidden">
         <div className="cardHeader">
-          <img src={`${img}`} alt={`Photo-${name}`} />
+          <LazyLoadImage src={`${img}`} alt={`Photo-${name}`} effect="black-and-white" loading="lazy"/>
         </div>
         <div className="cardBody flex justify-center font-bold text-xl my-4">
           <h1>{`${name}`}</h1>

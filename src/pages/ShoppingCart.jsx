@@ -3,6 +3,8 @@ import MyContext from "../context/MyContext"
 import ButtonAdd from "../components/ButtonAdd"
 import ButtonRemove from "../components/ButtonRemove"
 import { useNavigate } from "react-router-dom"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/black-and-white.css"
 
 function ShoppingCart() {
   const { cart, cartTotal, changeToClp } = useContext(MyContext)
@@ -19,7 +21,9 @@ function ShoppingCart() {
               className="flex justify-between border border-gray-700"
             >
               <div className="flex items-center">
-                <img
+                <LazyLoadImage
+                  effect="black-and-white"
+                  loading="lazy"
                   src={`${item.img}`}
                   alt={`Photo pizza ${item.name}`}
                   className="h-[100px] ml-2"
