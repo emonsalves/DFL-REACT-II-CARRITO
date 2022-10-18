@@ -10,15 +10,6 @@ const MyContextProvider = ({ children }) => {
   const getData = async () => {
     const res = await axios.get(apiUrl)
     const { data } = res
-    const cartList = await data.map((item) => ({
-      id: item.id,
-      name: item.name,
-      img: item.img,
-      quantity: 0,
-      price: item.price,
-      total: 0,
-    }))
-    setCart(cartList)
     setData(data)
   }
 
@@ -26,35 +17,45 @@ const MyContextProvider = ({ children }) => {
     getData()
   }, [])
 
-  const addPizza = (id) => {
-    const index = cart.findIndex((index) => index.id === id)
-    const pizza = cart.filter((pizza) => pizza.id === id)
-
-    cart.splice(index, 1, {
-      id: pizza[0].id,
-      name: pizza[0].name,
-      img: pizza[0].img,
-      quantity: pizza[0].quantity + 1,
-      price: pizza[0].price,
-      total: pizza[0].price * (pizza[0].quantity + 1),
+  const changeToClp = (element) => {
+    const changed = element.toLocaleString("es-CL", {
+      style: "currency",
+      currency: "CLP",
     })
-    setCart(cart)
+    return changed
+  }
+
+  // Cart --------------------------------------------------------------->>
+  const [cartTotal, setCartTotal] = useState(0)
+
+  const addPizza = (id, name, img, price) => {
+    const check = cart.find((e) => e.name.toUpperCase() === name.toUpperCase())
+    let update = ""
+    check === undefined
+      ? setCart([
+          ...cart,
+          { id: id, name: name, img: img, count: 1, price: price },
+        ])
+      : ((update = cart.map((item) =>
+          item.id === id ? (item.count++, item) : item
+        )),
+        setCart(update))
   }
 
   const removePizza = (id) => {
-    const index = cart.findIndex((index) => index.id === id)
-    const pizza = cart.filter((pizza) => pizza.id === id)
-
-    cart.splice(index, 1, {
-      id: pizza[0].id,
-      name: pizza[0].name,
-      img: pizza[0].img,
-      quantity: pizza[0].quantity - 1,
-      price: pizza[0].price,
-      total: pizza[0].price * (pizza[0].quantity - 1),
-    })
-    setCart(cart)
+    console.log(id)
   }
+
+  useEffect(() => {
+    setCartTotal(
+      changeToClp(
+        cart.reduce(
+          (pastValue, { price, count }) => pastValue + price * count,
+          0
+        )
+      )
+    )
+  }, [cart])
 
   return (
     <MyContext.Provider
@@ -63,8 +64,11 @@ const MyContextProvider = ({ children }) => {
         setData,
         cart,
         setCart,
+        cartTotal,
+        setCartTotal,
         addPizza,
         removePizza,
+        changeToClp,
       }}
     >
       {children}
