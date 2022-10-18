@@ -4,33 +4,34 @@ import { useParams } from "react-router-dom"
 
 import style from "../assets/css/pagesPizza.css"
 import Button from "../components/Button"
+import NotFound from "./NotFound"
 
 function Pizza() {
   const { id } = useParams()
   const { data, changeToClp } = useContext(MyContext)
 
   return (
-    <div className="containerDetail m-[10%]">
-      {id &&
+    <div className="containerDetail my-[90px]  sm:mt-[6%]">
+      {data.find((item) => item.id === id) ? (
         data
           .filter((pizza) => pizza.id === id)
           .map((pizzaDetail) => (
             <div
               key={`${pizzaDetail.name}-${pizzaDetail.id}`}
-              className="container max-h-[45vh] overflow-hidden"
+              className="container overflow-hidden flex flex-col"
             >
-              <div className="imagePizza">
+              <div className="imagePizza sm:max-w-[425px] mx-auto">
                 <img src={`${pizzaDetail.img}`} />
               </div>
-              <div className="titlePizza mx-auto pt-2">
+              <div className="titlePizza mx-auto p-2 font-bold">
                 <h1>{pizzaDetail.name.toUpperCase()}</h1>
               </div>
-              <div className="descriptionPizza ml-[10%]">
+              <div className="descriptionPizza p-2 sm:mx-[5%]">
                 <p>{pizzaDetail.desc}</p>
               </div>
-              <div className="ingredientsPizza ml-[15%]">
+              <div className="ingredientsPizza p-2 sm:ml-[15%]">
                 <ul>
-                  Ingredients
+                  <strong>Ingredients</strong>
                   {pizzaDetail.ingredients
                     ? pizzaDetail.ingredients.map((item) => (
                         <li
@@ -41,7 +42,7 @@ function Pizza() {
                     : null}
                 </ul>
               </div>
-              <div className="totalsPizza flex justify-evenly items-center ">
+              <div className="totalsPizza flex justify-evenly items-center font-extrabold ">
                 <h1>Valor {changeToClp(pizzaDetail.price)}</h1>
                 <Button
                   textBtn={"Add to Cart"}
@@ -53,7 +54,10 @@ function Pizza() {
                 />
               </div>
             </div>
-          ))}
+          ))
+      ) : (
+        <NotFound />
+      )}
     </div>
   )
 }
