@@ -32,30 +32,21 @@ const MyContextProvider = ({ children }) => {
     const check = cart.find((e) => e.name.toUpperCase() === name.toUpperCase())
     let update = ""
     check === undefined
-      ? setCart([
-          ...cart,
-          { id: id, name: name, img: img, count: 1, price: price },
-        ])
-      : ((update = cart.map((item) =>
-          item.id === id ? (item.count++, item) : item
-        )),
-        setCart(update))
+      ? setCart([...cart,{ id: id, name: name, img: img, count: 1, price: price },])
+      : ((update = cart.map((item) => item.id === id ? (item.count++, item) : item)), setCart(update))
   }
 
-  const removePizza = (id) => {
-    console.log(id)
+  const removePizza = (id, name) => {
+    const check = cart.find((e) => e.name.toUpperCase() === name.toUpperCase())
+    let update = ""
+    check.count === 1
+      ? ((update = cart.filter((item) => item.id !== id)), setCart(update))
+      : ((update = cart.map((item) => item.id === id ? (item.count--, item) : item)), setCart(update))
   }
 
   useEffect(() => {
-    setCartTotal(
-      changeToClp(
-        cart.reduce(
-          (pastValue, { price, count }) => pastValue + price * count,
-          0
-        )
-      )
-    )
-  }, [cart])
+    setCartTotal(changeToClp(cart.reduce((pastValue, { price, count }) => pastValue + price * count, 0)))
+    }, [cart])
 
   return (
     <MyContext.Provider

@@ -19,13 +19,14 @@ function Button({ colorBtn, textBtn, id, name, img, price }) {
   return (
     <>
       <ToastContainer
-        position="top-right"
+        position="top-left"
         autoClose={200}
         closeOnClick= {false}
         hideProgressBar={true}
         newestOnTop={false}
         pauseOnFocusLoss={false}
         draggable={false}
+        rtl={false}
         theme="dark"
       />
       <button

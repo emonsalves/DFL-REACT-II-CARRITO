@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import MyContext from "../context/MyContext"
-import ButtonAddRemove from "../components/ButtonAddRemove"
+import ButtonAdd from "../components/ButtonAdd"
+import ButtonRemove from "../components/ButtonRemove"
 
 function ShoppingCart() {
   const { cart, cartTotal, changeToClp } = useContext(MyContext)
@@ -19,19 +20,17 @@ function ShoppingCart() {
                 <h1 className="ml-10">{`Pizza Familiar ${item.name[0].toUpperCase() + item.name.substring(1)}`}</h1>
               </div>
               <div className="flex justify-center items-center ">
-                <ButtonAddRemove
+                <ButtonRemove
                   id={item.id}
                   textBtn={" - "}
-                  color="red"
                   name={item.name}
                   img={item.img}
                   price={item.price}
                 />
                 <h2>{`${item.count}`}</h2>
-                <ButtonAddRemove
+                <ButtonAdd
                   id={item.id}
                   textBtn={" + "}
-                  color="green"
                   name={item.name}
                   img={item.img}
                   price={item.price}
