@@ -28,7 +28,7 @@ export default function Navbar() {
           id="example-navbar-danger"
         >
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li className="nav-item">
+            <li className="nav-item" onClick={() => setNavbarOpen(!navbarOpen)}>
               <NavLink
                 to={"/"}
                 className={({ isActive }) =>
@@ -41,7 +41,7 @@ export default function Navbar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={() => setNavbarOpen(!navbarOpen)}>
               <NavLink
                 to={"/ShoppingCart"}
                 className={({ isActive }) =>
