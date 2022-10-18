@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
-import MyContext from "../../context/MyContext"
-import Button from "../Button"
+import MyContext from "../context/MyContext"
+import Button from "./Button"
 
 function Card({ id, img, ingredients, name, price }) {
   const { changeToClp } = useContext(MyContext)

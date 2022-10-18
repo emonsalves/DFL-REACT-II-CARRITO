@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import MyContext from "../context/MyContext"
-import Card from "../components/Cards/Card"
+import Card from "../components/Card"
 import Banner from "../components/Banner"
 function Home() {
   const { data } = useContext(MyContext)
