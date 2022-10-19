@@ -1,6 +1,5 @@
 import React from "react"
 
-
 function Banner() {
   return (
     <>
@@ -12,7 +11,7 @@ function Banner() {
         src="/banner.jpg"
         loading="lazy"
         alt="Banner Pizzeria Natos"
-        className="w-full opacity-40"
+        className="w-full opacity-40 mt-8 "
       />
     </>
   )
